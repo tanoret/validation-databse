@@ -64,3 +64,66 @@ def dataframe_row_to_case(row: Dict[str, Any], db: Dict[str, Any]) -> Dict[str, 
     c.setdefault("summary", c.get("summary") or "")
     c.setdefault("artifacts", c.get("artifacts") or {"inputs": [], "outputs": [], "plots": []})
     return c
+
+
+# -----------------------
+# Report preview
+# -----------------------
+def display_report_excerpt(case: Dict[str, Any], db: Dict[str, Any], reports_dirs: Any) -> None:
+    """Embed a best-effort excerpt of the source report PDF for a case.
+
+    This expects the PDFs to be present on disk (repo root `pdf/` is preferred).
+    """
+    import streamlit as st
+    from pathlib import Path
+    from src.db import resolve_report_file
+    from src.pdf_tools import find_best_page, render_page_png, build_pdf_iframe
+
+    reports = db.get("reports", {}) or {}
+    sources = case.get("source_reports") or []
+    if not sources:
+        st.info("No source report pointers available for this case.")
+        return
+
+    for idx, src in enumerate(sources, start=1):
+        rid = src.get("report_id") or ""
+        report = reports.get(rid, {}) if rid else {}
+        note = src.get("note") or src.get("section") or ""
+        title = report.get("title") or report.get("report_number") or rid or f"Source {idx}"
+
+        st.markdown(f"**{idx}. {title}**")
+        if note:
+            st.caption(note)
+
+        pdf_path = resolve_report_file(report, reports_dirs)
+        if not pdf_path or not Path(pdf_path).exists():
+            st.warning("PDF not found. Put the report under `./pdf/` (repo root) using the same filename as `reports[*].file_name` in the DB.")
+            st.divider()
+            continue
+
+        queries = [case.get("title") or "", note]
+        match = find_best_page(Path(pdf_path), queries=queries, max_pages=40)
+        page_index = match.page_index if match else 0
+        page_num = page_index + 1
+
+        with st.expander(f"View excerpt – page {page_num}", expanded=False):
+            pdf_bytes = Path(pdf_path).read_bytes()
+            st.download_button(
+                "Download report PDF",
+                data=pdf_bytes,
+                file_name=Path(pdf_path).name,
+                mime="application/pdf",
+                key=f"dl_{case.get('id','case')}_{idx}",
+            )
+
+            png = render_page_png(Path(pdf_path), page_index=page_index, zoom=2.0)
+            if png:
+                st.image(png, caption=f"Rendered page {page_num}", use_container_width=True)
+
+            st.markdown(build_pdf_iframe(pdf_bytes, page=page_num, height=650), unsafe_allow_html=True)
+
+            if match and match.snippet:
+                st.caption("Match snippet (best-effort):")
+                st.code(match.snippet[:700])
+
+        st.divider()

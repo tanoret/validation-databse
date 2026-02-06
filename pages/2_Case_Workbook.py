@@ -18,7 +18,7 @@ from src.db import (
     suggest_case_id,
     validate_case_minimum,
 )
-from src.ui_helpers import cases_to_dataframe, dataframe_row_to_case, split_csv_field
+from src.ui_helpers import cases_to_dataframe, display_report_excerpt, dataframe_row_to_case, split_csv_field
 
 
 st.set_page_config(page_title="Case Workbook", page_icon="📒", layout="wide")
@@ -244,3 +244,20 @@ st.download_button(
     mime="application/json",
     use_container_width=True,
 )
+
+
+st.subheader("📄 Report preview for selected case")
+
+case_ids = sorted(list((db.get("cases", {}) or {}).keys()))
+selected_case_id = st.selectbox(
+    "Select a case to preview its source report excerpt",
+    options=case_ids,
+    index=0 if case_ids else None,
+)
+
+if selected_case_id:
+    c = get_case(db, selected_case_id)
+    if c:
+        display_report_excerpt(c, db, reports_dirs=[Path("pdf"), Path("data/reports")])
+    else:
+        st.info("Select a valid case ID to preview.")

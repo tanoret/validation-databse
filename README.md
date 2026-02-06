@@ -54,3 +54,8 @@ The app therefore always offers a **Download updated database JSON** button so y
 ---
 
 INL / NEAMS demo — adjust to your internal conventions as needed.
+
+
+## Report PDFs
+
+Place the milestone report PDFs in the repository root folder `pdf/` (preferred). When you click a case, the app searches the PDF text for the case title and the stored source note, then shows the best-matching page as an excerpt.

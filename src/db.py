@@ -120,24 +120,48 @@ def add_or_update_report(db: Dict[str, Any], report_id: str, report: Dict[str, A
     db["reports"][report_id] = report
 
 
-def resolve_report_file(report: Dict[str, Any], reports_dir: Path) -> Optional[Path]:
-    """Try to locate the PDF locally, using report['file_name'] or report_link basename."""
+def resolve_report_file(report: Dict[str, Any], reports_dir: Any) -> Optional[Path]:
+    """Locate a report PDF on disk.
+
+    `reports_dir` may be:
+      - a Path (single directory)
+      - a list/tuple of Paths (searched in order)
+
+    The app also automatically checks:
+      - ./pdf
+      - ./data/reports
+    """
     if not report:
         return None
-    reports_dir = Path(reports_dir)
+
+    # Normalize to list[Path]
+    dirs: List[Path]
+    if isinstance(reports_dir, (list, tuple)):
+        dirs = [Path(p) for p in reports_dir]
+    else:
+        dirs = [Path(reports_dir)]
+
+    for extra in [Path("pdf"), Path("data/reports")]:
+        if extra not in dirs:
+            dirs.append(extra)
+
     file_name = (report.get("file_name") or "").strip()
-    if file_name:
-        p = reports_dir / file_name
-        if p.exists():
-            return p
     link = (report.get("file_link") or report.get("report_link") or "").strip()
+
+    candidates: List[str] = []
+    if file_name:
+        candidates.append(file_name)
     if link:
-        # Handle sandbox:/... or plain path-like strings by basename
         base = os.path.basename(link.replace("sandbox:/", ""))
-        if base:
-            p = reports_dir / base
+        if base and base not in candidates:
+            candidates.append(base)
+
+    for d in dirs:
+        for name in candidates:
+            p = d / name
             if p.exists():
                 return p
+
     return None
 
 

@@ -29,10 +29,12 @@ from src.search import (
 )
 from src.agent import run_agent
 from src.reporting import generate_cgd_markdown, render_cgd_pdf, DEFAULT_CRITICAL_CHARACTERISTICS
+from src.ui_helpers import display_report_excerpt
 
 
 APP_TITLE = "NEAMS Validation Database – Demo"
-REPORTS_DIR_DEFAULT = Path("data/reports")
+REPORTS_DIR_DEFAULT = Path("pdf")
+REPORTS_DIR_FALLBACK = Path("data/reports")
 
 
 # -----------------------
