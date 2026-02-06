@@ -1,0 +1,2865 @@
+{
+  "schema_version": "0.1.0",
+  "generated_on": "2026-02-05",
+  "database_name": "NEAMS Validation Database (Demo)",
+  "description": "Demonstration JSON database aggregating verification/validation/benchmark/demonstration cases extracted from the attached NEAMS MSR milestone reports. Designed to support future commercial grade dedication workflows via traceability to source evidence.",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "Each validation case shall have a globally unique, stable case identifier.",
+      "rationale": "Enables traceability, change control, and cross-report linking for commercial grade dedication (CGD).",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-002",
+      "statement": "Each case shall reference its source report(s) with a resolvable link and (when known) section/figure/table pointers.",
+      "rationale": "Provides evidence provenance required for audits and CGD packages.",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-003",
+      "statement": "Each case shall be classified by V&V intent (verification, validation, benchmark, demonstration) and by modeling scope (component/integral/system).",
+      "rationale": "Supports filtering and graded quality approaches.",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-004",
+      "statement": "Each case shall record the NEAMS tool(s) and key physics/phenomena exercised.",
+      "rationale": "Supports coverage analysis and gap identification.",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Where available, each case shall include quantitative metrics and acceptance criteria (or a placeholder to be filled).",
+      "rationale": "Enables objective pass/fail evaluation for qualification and CGD.",
+      "priority": "SHOULD"
+    },
+    {
+      "id": "REQ-006",
+      "statement": "Cases shall support attachment of artifacts (input decks, output datasets, plots) and software configuration metadata (version, commit, environment) when available.",
+      "rationale": "Reproducibility and configuration control are CGD essentials.",
+      "priority": "SHOULD"
+    }
+  ],
+  "reports": {
+    "INL-RPT-24-80404": {
+      "report_number": "INL/RPT-24-80404",
+      "title": "Development of a Computational Framework for Multiphysics Multiphase Species Tracking using NEAMS Tools (FY24 M3 Report)",
+      "date": "September 2024",
+      "file_name": "80404 ART_MSR_M3_MT_final MSR_MT.pdf",
+      "file_link": "sandbox:/mnt/data/80404 ART_MSR_M3_MT_final MSR_MT.pdf"
+    },
+    "INL-RPT-24-81124": {
+      "report_number": "INL/RPT-24-81124",
+      "title": "Integration of Thermochimica into MOOSE-based Molten Salt Reactor Loop Simulations (FY24 M2 Report)",
+      "date": "October 2024",
+      "file_name": "M2_FullLoopCorrosion_2024.pdf",
+      "file_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf"
+    },
+    "INL-RPT-25-88048": {
+      "report_number": "INL/RPT-25-88048",
+      "title": "Initial steady-state core simulation capability for thermal and pool-type molten salt reactors, coupling reactor physics, thermal-hydraulics, and evolving chemistry (M2 Report)",
+      "date": "September 2025",
+      "file_name": "M2_report_all_labs_final.pdf",
+      "file_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf"
+    },
+    "INL-RPT-25-88131": {
+      "report_number": "INL/RPT-25-88131",
+      "title": "Complete Pronghorn Electrochemistry Modeling Improvements for Corrosion and Plating Modeling (FY25 M3 Report)",
+      "date": "February 2025",
+      "file_name": "MSR_TC_M3_2025 (4).pdf",
+      "file_link": "sandbox:/mnt/data/MSR_TC_M3_2025 (4).pdf"
+    },
+    "INL-RPT-25-88371": {
+      "report_number": "INL/RPT-25-88371",
+      "title": "Integrated Molten Salt Reactor Modeling NEAMS Thermal-Hydraulics Tools (FY25 M2 Report)",
+      "date": "October 2025",
+      "file_name": "MSR_TH_M2_2025__INL_internal_ (2).pdf",
+      "file_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf"
+    }
+  },
+  "cases": {
+    "MSR_TH_DO_VER_001": {
+      "id": "MSR_TH_DO_VER_001",
+      "title": "DO coupling verification: Pipe systems connected by double-T (water, single-fluid)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (double-T)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_002": {
+      "id": "MSR_TH_DO_VER_002",
+      "title": "DO coupling verification: Pipe systems connected by double-T (salt, single-fluid)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (double-T)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_003": {
+      "id": "MSR_TH_DO_VER_003",
+      "title": "DO coupling verification: Pipe systems connected by double-T (water + air, two-fluid)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (double-T)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water",
+        "air"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_004": {
+      "id": "MSR_TH_DO_VER_004",
+      "title": "DO coupling verification: Pipe systems connected by double-T (salt + argon, two-fluid)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (double-T)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_005": {
+      "id": "MSR_TH_DO_VER_005",
+      "title": "DO coupling verification: Three-junction system (water)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (three junctions)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_006": {
+      "id": "MSR_TH_DO_VER_006",
+      "title": "DO coupling verification: Three-junction system (salt)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe network (three junctions)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_007": {
+      "id": "MSR_TH_DO_VER_007",
+      "title": "DO coupling verification: Natural circulation loop (water)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "natural circulation loop",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_008": {
+      "id": "MSR_TH_DO_VER_008",
+      "title": "DO coupling verification: Natural circulation loop (salt)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "natural circulation loop",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VER_009": {
+      "id": "MSR_TH_DO_VER_009",
+      "title": "DO coupling verification: Molten salt loop (salt)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "molten salt loop",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VAL_001": {
+      "id": "MSR_TH_DO_VAL_001",
+      "title": "DO coupling validation: Pipe systems connected by double-T (water)",
+      "vv_type": "validation",
+      "scope": "component",
+      "system": "pipe network (double-T)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_VAL_002": {
+      "id": "MSR_TH_DO_VAL_002",
+      "title": "DO coupling validation: MSRE (salt + gas, scalar transport enabled)",
+      "vv_type": "validation",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (entrained/void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow",
+        "scalar transport"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_DEM_001": {
+      "id": "MSR_TH_DO_DEM_001",
+      "title": "DO coupling demonstration: Flow split in T-junction (water)",
+      "vv_type": "demonstration",
+      "scope": "component",
+      "system": "T-junction",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_DEM_002": {
+      "id": "MSR_TH_DO_DEM_002",
+      "title": "DO coupling demonstration: Asymmetric flow in a tank with hydrostatic column (water)",
+      "vv_type": "demonstration",
+      "scope": "component",
+      "system": "tank + hydrostatic column",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_DEM_003": {
+      "id": "MSR_TH_DO_DEM_003",
+      "title": "DO coupling demonstration: Multiple junctions with asymmetric flow (water)",
+      "vv_type": "demonstration",
+      "scope": "component",
+      "system": "pipe network (multiple junctions)",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_DEM_004": {
+      "id": "MSR_TH_DO_DEM_004",
+      "title": "DO coupling demonstration: PB-FHR system (helium, pebble bed)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "PB-FHR",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "helium"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_DO_DEM_005": {
+      "id": "MSR_TH_DO_DEM_005",
+      "title": "DO coupling demonstration: HTR-PM system (helium, pebble bed)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "HTR-PM",
+      "tools": [
+        "SAM",
+        "Pronghorn"
+      ],
+      "fluids": [
+        "helium"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "domain-overlapped coupling",
+        "transient flow"
+      ],
+      "summary": "Case from the DO coupling test suite used to assess/verify/validate the Domain-Overlapped (DO) coupling methodology.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Table 4: Summary of test cases performed for DO coupling methodology."
+        }
+      ],
+      "tags": [
+        "DO-coupling",
+        "SAM",
+        "Pronghorn"
+      ]
+    },
+    "MSR_TH_COR_VER_A": {
+      "id": "MSR_TH_COR_VER_A",
+      "title": "Verification Case A: Friction factor with constant density and viscosity",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (turbulent wall friction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Theoretical verification case using constant density/viscosity. Used to validate friction factor correlations and temperature advection changes.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSR_TH_COR_VER_B": {
+      "id": "MSR_TH_COR_VER_B",
+      "title": "Verification Case B: Friction factor with temperature-dependent density",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (turbulent wall friction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Verification case with density dependent on temperature.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSR_TH_COR_VER_C": {
+      "id": "MSR_TH_COR_VER_C",
+      "title": "Verification Case C: Friction factor with temperature-dependent viscosity",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (turbulent wall friction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Verification case with viscosity dependent on temperature.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSR_TH_COR_VER_D": {
+      "id": "MSR_TH_COR_VER_D",
+      "title": "Verification Case D: Friction factor with temperature-dependent density and viscosity",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (turbulent wall friction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Verification case with both density and viscosity dependent on temperature.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSR_TH_COR_VER_E": {
+      "id": "MSR_TH_COR_VER_E",
+      "title": "Verification Case E: Buoyancy correction (density stratification)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (buoyancy correction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Verification case evaluating buoyancy correction with temperature-dependent density.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSR_TH_COR_VER_F": {
+      "id": "MSR_TH_COR_VER_F",
+      "title": "Verification Case F: Buoyancy correction + temperature-dependent viscosity",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "pipe (buoyancy correction)",
+      "tools": [
+        "Pronghorn"
+      ],
+      "fluids": [
+        "generic fluid"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "turbulent friction factor",
+        "temperature-dependent properties",
+        "buoyancy correction"
+      ],
+      "summary": "Verification case combining buoyancy correction with temperature-dependent viscosity.",
+      "metrics": [],
+      "acceptance_criteria": {
+        "type": "relative_error",
+        "target": "<= 0.01 (1%) vs reference friction factor",
+        "status": "reported"
+      },
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 4.4.1: Verification cases A–F for turbulence/fission factor/buoyancy correction improvements."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "plating",
+        "turbulence",
+        "verification"
+      ]
+    },
+    "MSRE_PUMP_STARTUP_VAL_001": {
+      "id": "MSRE_PUMP_STARTUP_VAL_001",
+      "title": "MSRE pump start-up transient: reactivity loss validation (coupled multiphysics)",
+      "vv_type": "validation",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Pronghorn",
+        "Griffin",
+        "Squirrel"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "pump start-up transient",
+        "void transport",
+        "reactivity feedback",
+        "DO coupling"
+      ],
+      "summary": "Validation case comparing predicted reactivity loss during MSRE pump start-up against historical MSRE experiment.",
+      "metrics": [
+        {
+          "name": "reactivity_loss_difference",
+          "value": "6 pcm",
+          "basis": "prediction vs experiment"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 3.4.2; pump start-up reactivity loss comparison (Figure 30)."
+        },
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "MSRE integral modeling V&V includes pump start-up transient and validation against MSRE data."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "validation",
+        "pump-startup",
+        "reactivity"
+      ]
+    },
+    "MSRE_PUMP_COASTDOWN_VAL_001": {
+      "id": "MSRE_PUMP_COASTDOWN_VAL_001",
+      "title": "MSRE pump coast-down transient: reactivity loss validation (coupled multiphysics)",
+      "vv_type": "validation",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Pronghorn",
+        "Griffin",
+        "Squirrel"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "pump coast-down transient",
+        "void transport",
+        "reactivity feedback",
+        "DO coupling"
+      ],
+      "summary": "Validation case comparing predicted reactivity loss during MSRE pump coast-down against historical MSRE experiment.",
+      "metrics": [
+        {
+          "name": "reactivity_loss_difference",
+          "value": "5.5 pcm",
+          "basis": "prediction vs experiment"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 3.4.2; pump coast-down reactivity loss comparison (Figure 31)."
+        },
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "MSRE integral modeling V&V includes pump coast-down transient and validation against MSRE data."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "validation",
+        "pump-coastdown",
+        "reactivity"
+      ]
+    },
+    "MSRE_NATURAL_CIRCULATION_VAL_001": {
+      "id": "MSRE_NATURAL_CIRCULATION_VAL_001",
+      "title": "MSRE natural circulation test: coupled multiphysics validation",
+      "vv_type": "validation",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Pronghorn",
+        "Griffin",
+        "Squirrel"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "natural circulation",
+        "thermal-hydraulics",
+        "reactivity feedback"
+      ],
+      "summary": "Validation case using MSRE natural circulation tests as experimental reference for the coupled multiphysics model suite.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 4.3: V&V includes natural circulation tests as part of MSRE validation."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "natural-circulation",
+        "validation"
+      ]
+    },
+    "MSRE_REACTIVITY_INSERTION_DEM_001": {
+      "id": "MSRE_REACTIVITY_INSERTION_DEM_001",
+      "title": "MSRE reactivity insertion transient: postulated event demonstration",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Pronghorn",
+        "Griffin",
+        "Squirrel"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "reactivity insertion transient",
+        "power excursion",
+        "coupled feedback"
+      ],
+      "summary": "Demonstration case (postulated) based on a 5 MW reactivity insertion event to exercise the coupled multiphysics transient capability.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 3.4.3: Reactivity insertion transient (postulated), based on 5 MW insertion parameters."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "reactivity-insertion",
+        "demonstration"
+      ]
+    },
+    "MSRE_XE_TRANSPORT_DEM_001": {
+      "id": "MSRE_XE_TRANSPORT_DEM_001",
+      "title": "MSRE Xe-135 transport: equilibrium distribution and reactivity impact (integrated demonstration)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSRE primary loop + graphite moderator",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "molten salt",
+        "helium (bubbles)",
+        "graphite moderator"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "Xe-135 generation and transport",
+        "drift flux void transport",
+        "gas-liquid mass transfer",
+        "noble gas migration in graphite",
+        "reactivity effect"
+      ],
+      "summary": "Integrated demonstration of Xe-135 transport and reactivity in the MSRE; includes graphite noble gas migration model and extended simulation (72 h) to estimate equilibrium distributions.",
+      "metrics": [
+        {
+          "name": "simulation_time",
+          "value": "72 h",
+          "basis": "reported"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88371",
+          "report_link": "sandbox:/mnt/data/MSR_TH_M2_2025__INL_internal_ (2).pdf",
+          "note": "Section 7.5: Integrated demonstration of Xe-135 transport and reactivity in the MSRE."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "xenon",
+        "species-transport",
+        "demonstration"
+      ]
+    },
+    "MSRE_XE_POISONING_VAL_001": {
+      "id": "MSRE_XE_POISONING_VAL_001",
+      "title": "MSRE steady-state xenon poisoning: validation vs measured reactivity change",
+      "vv_type": "validation",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "SAM",
+        "Griffin",
+        "Pronghorn",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (bubbles)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "xenon stripping",
+        "void fraction effects",
+        "gas-liquid mass transfer",
+        "reactivity change"
+      ],
+      "summary": "Validation against steady-state xenon poisoning measurements; includes parametric studies on Henry’s constant, mass transfer coefficient, and core-average void fraction.",
+      "metrics": [
+        {
+          "name": "void_fraction_cases",
+          "value": [
+            "0.05%",
+            "0.25%",
+            "0.50%",
+            "0.75%"
+          ],
+          "basis": "reported parametric study"
+        },
+        {
+          "name": "core_avg_void_fraction_baseline",
+          "value": "0.25%",
+          "basis": "reported"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [
+        {
+          "type": "experimental_reference",
+          "citation": "Engel and Steffy (1971)"
+        }
+      ],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 4.3.9: Xe transport and xenon poisoning validation; includes parametric void fraction study."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "xenon",
+        "validation"
+      ]
+    },
+    "MSRE_NOBLE_METAL_TRANSPORT_DEM_001": {
+      "id": "MSRE_NOBLE_METAL_TRANSPORT_DEM_001",
+      "title": "MSRE noble metal transport and deposition: demonstration (e.g., Rh plate-out)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSRE primary loop",
+      "tools": [
+        "Thermochimica",
+        "Pronghorn",
+        "SAM"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "noble metal transport",
+        "plate-out/deposition",
+        "chemistry coupling"
+      ],
+      "summary": "Demonstration of noble metal species transport and deposition; example shown for Rh distribution after extended simulation time.",
+      "metrics": [
+        {
+          "name": "example_time",
+          "value": "100,000 s",
+          "basis": "reported figure"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 4.3.10: Noble metal transport; example of Rh distribution after 100,000 s."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "noble-metals",
+        "demonstration"
+      ]
+    },
+    "TAMU_MSFL_SINGLE_PHASE_VAL_SALT_001": {
+      "id": "TAMU_MSFL_SINGLE_PHASE_VAL_SALT_001",
+      "title": "TAMU molten salt flow loop (MSFL): 1D SAM model single-phase validation (salt (HITEC))",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "salt (HITEC)"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "natural circulation",
+        "single-phase pressure drop",
+        "temperature rise (ΔT)",
+        "velocity"
+      ],
+      "summary": "Single-phase validation of SAM against TAMU MSFL experimental data using iterative tuning of heat input, cold-leg temperature, and friction factor to match ΔT, velocity, and Prandtl number targets.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: SAM model of TAMU MSFL; single-phase validation procedure and results tables."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "single-phase"
+      ]
+    },
+    "TAMU_MSFL_SINGLE_PHASE_VAL_WATER_001": {
+      "id": "TAMU_MSFL_SINGLE_PHASE_VAL_WATER_001",
+      "title": "TAMU molten salt flow loop (MSFL): 1D SAM model single-phase validation (water)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "water"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "natural circulation",
+        "single-phase pressure drop",
+        "temperature rise (ΔT)",
+        "velocity"
+      ],
+      "summary": "Single-phase validation of SAM against TAMU MSFL experimental data using iterative tuning of heat input, cold-leg temperature, and friction factor to match ΔT, velocity, and Prandtl number targets.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: SAM model of TAMU MSFL; single-phase validation procedure and results tables."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "single-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_SALT_T1": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_SALT_T1",
+      "title": "TAMU MSFL two-phase validation: Salt Test 1 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "salt (HITEC)",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 1.5e-05
+        },
+        {
+          "name": "weber_number",
+          "value": 8.19
+        },
+        {
+          "name": "prandtl_number",
+          "value": 15.6
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.032
+        },
+        {
+          "name": "deltaT_C",
+          "value": 11.02
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_SALT_T2": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_SALT_T2",
+      "title": "TAMU MSFL two-phase validation: Salt Test 2 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "salt (HITEC)",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 3.5e-07
+        },
+        {
+          "name": "weber_number",
+          "value": 3.86
+        },
+        {
+          "name": "prandtl_number",
+          "value": 36.5
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.03
+        },
+        {
+          "name": "deltaT_C",
+          "value": 10.27
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_SALT_T3": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_SALT_T3",
+      "title": "TAMU MSFL two-phase validation: Salt Test 3 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "salt (HITEC)",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 1.5e-07
+        },
+        {
+          "name": "weber_number",
+          "value": 3.96
+        },
+        {
+          "name": "prandtl_number",
+          "value": 47.5
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.028
+        },
+        {
+          "name": "deltaT_C",
+          "value": 11.94
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_WATER_T1": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_WATER_T1",
+      "title": "TAMU MSFL two-phase validation: Water Test 1 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "water",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 3.2e-05
+        },
+        {
+          "name": "weber_number",
+          "value": 13.8
+        },
+        {
+          "name": "prandtl_number",
+          "value": 3.78
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.026
+        },
+        {
+          "name": "deltaT_C",
+          "value": 1.43
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_WATER_T2": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_WATER_T2",
+      "title": "TAMU MSFL two-phase validation: Water Test 2 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "water",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 4.9e-07
+        },
+        {
+          "name": "weber_number",
+          "value": 3.58
+        },
+        {
+          "name": "prandtl_number",
+          "value": 3.78
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.026
+        },
+        {
+          "name": "deltaT_C",
+          "value": 1.43
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "TAMU_MSFL_TWO_PHASE_VAL_WATER_T3": {
+      "id": "TAMU_MSFL_TWO_PHASE_VAL_WATER_T3",
+      "title": "TAMU MSFL two-phase validation: Water Test 3 (SAM drift-flux + point-source gas injection)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "TAMU MSFL natural circulation loop",
+      "tools": [
+        "SAM"
+      ],
+      "fluids": [
+        "water",
+        "argon"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase drift-flux",
+        "gas injection",
+        "void fraction",
+        "terminal velocity",
+        "bubble diameter"
+      ],
+      "summary": "Two-phase extension of the TAMU MSFL SAM model using drift-flux capability with argon gas injected as a point source after a single-phase steady period (first 5000 s).",
+      "metrics": [
+        {
+          "name": "argon_injection_rate_m3_s",
+          "value": 4.8e-07
+        },
+        {
+          "name": "weber_number",
+          "value": 2.73
+        },
+        {
+          "name": "prandtl_number",
+          "value": 3.78
+        },
+        {
+          "name": "liquid_velocity_m_s",
+          "value": 0.026
+        },
+        {
+          "name": "deltaT_C",
+          "value": 1.43
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.2: two-phase validation using SAM drift flux; Table 3-4 initial experimental conditions."
+        }
+      ],
+      "tags": [
+        "TAMU",
+        "MSFL",
+        "SAM",
+        "validation",
+        "two-phase"
+      ]
+    },
+    "LMSR_HYDRAULICS_BENCHMARK_001": {
+      "id": "LMSR_HYDRAULICS_BENCHMARK_001",
+      "title": "Lotus MSR (L-MSR) hydraulics benchmarking and calibration (e.g., vs LES)",
+      "vv_type": "benchmark",
+      "scope": "system",
+      "system": "Lotus Molten Salt Reactor (L-MSR)",
+      "tools": [
+        "Pronghorn",
+        "Griffin",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "hydraulic calibration",
+        "pool-type flow distribution",
+        "coupled neutronics–thermal-hydraulics"
+      ],
+      "summary": "Benchmarking effort for L-MSR hydraulics to calibrate or compare flow modeling to reference high-fidelity calculations (e.g., LES), as part of the integrated multiphysics framework.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 5.3.1: Benchmarking of the hydraulics flow modeling for L-MSR."
+        }
+      ],
+      "tags": [
+        "L-MSR",
+        "benchmark",
+        "hydraulics"
+      ]
+    },
+    "LMSR_PUMP_STOP_DEM_001": {
+      "id": "LMSR_PUMP_STOP_DEM_001",
+      "title": "L-MSR unprotected pump-driven transient: full pump stop",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Lotus Molten Salt Reactor (L-MSR)",
+      "tools": [
+        "Pronghorn",
+        "Griffin",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "pump trip",
+        "thermal feedback",
+        "reactivity response"
+      ],
+      "summary": "Demonstration case for an unprotected pump-driven transient with a full pump stop.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 5.3.4: Unprotected pump-driven transients; includes full pump stop case."
+        }
+      ],
+      "tags": [
+        "L-MSR",
+        "transient",
+        "demonstration"
+      ]
+    },
+    "LMSR_PUMP_POWER_REDUCTION_DEM_002": {
+      "id": "LMSR_PUMP_POWER_REDUCTION_DEM_002",
+      "title": "L-MSR unprotected pump-driven transient: 50% pump power reduction",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Lotus Molten Salt Reactor (L-MSR)",
+      "tools": [
+        "Pronghorn",
+        "Griffin",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "partial pump power reduction",
+        "thermal feedback",
+        "reactivity response"
+      ],
+      "summary": "Demonstration case for an unprotected pump-driven transient with a 50% pump power reduction.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 5.3.4: Unprotected pump-driven transients; includes 50% pump power reduction case."
+        }
+      ],
+      "tags": [
+        "L-MSR",
+        "transient",
+        "demonstration"
+      ]
+    },
+    "LMSR_NATURAL_CIRCULATION_DEM_003": {
+      "id": "LMSR_NATURAL_CIRCULATION_DEM_003",
+      "title": "L-MSR natural circulation operation: demonstration",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Lotus Molten Salt Reactor (L-MSR)",
+      "tools": [
+        "Pronghorn",
+        "Griffin",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "natural circulation",
+        "pool-type thermal hydraulics"
+      ],
+      "summary": "Demonstration of L-MSR operation in natural circulation mode.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 5.3.5: Natural circulation operation for L-MSR."
+        }
+      ],
+      "tags": [
+        "L-MSR",
+        "natural-circulation",
+        "demonstration"
+      ]
+    },
+    "LMSR_FLOW_STOP_SOLIDIFICATION_DEM_004": {
+      "id": "LMSR_FLOW_STOP_SOLIDIFICATION_DEM_004",
+      "title": "L-MSR flow stop with long-term salt solidification and re-melting: demonstration (control element insertion scenarios)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Lotus Molten Salt Reactor (L-MSR)",
+      "tools": [
+        "Pronghorn",
+        "Griffin",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "flow stop",
+        "salt freezing/solidification",
+        "re-melting",
+        "reactivity insertion (control elements)"
+      ],
+      "summary": "Demonstration of long-term salt solidification and re-melting following a flow stop, including parametric insertion of one to four control elements.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 5.3.6: Flow stop with long-term salt solidification and re-melting; multiple control element insertion scenarios."
+        }
+      ],
+      "tags": [
+        "L-MSR",
+        "solidification",
+        "demonstration"
+      ]
+    },
+    "MSR_TC_PNP_VER_001": {
+      "id": "MSR_TC_PNP_VER_001",
+      "title": "PNP verification Case 1: Diffusion and migration (equal and opposite charges)",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "electrochemistry (PNP/Butler–Volmer)",
+      "tools": [
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt (electrolyte)"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "Poisson–Nernst–Planck",
+        "electrochemical transport",
+        "current density"
+      ],
+      "summary": "Electrochemistry verification case comparing against theoretical current densities and/or concentration distributions.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Verification section: four electrochemical verification cases for the PNP framework."
+        }
+      ],
+      "tags": [
+        "electrochemistry",
+        "PNP",
+        "verification"
+      ]
+    },
+    "MSR_TC_PNP_VER_002": {
+      "id": "MSR_TC_PNP_VER_002",
+      "title": "PNP verification Case 2: Diffusion with equal charges",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "electrochemistry (PNP/Butler–Volmer)",
+      "tools": [
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt (electrolyte)"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "Poisson–Nernst–Planck",
+        "electrochemical transport",
+        "current density"
+      ],
+      "summary": "Electrochemistry verification case comparing against theoretical current densities and/or concentration distributions.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Verification section: four electrochemical verification cases for the PNP framework."
+        }
+      ],
+      "tags": [
+        "electrochemistry",
+        "PNP",
+        "verification"
+      ]
+    },
+    "MSR_TC_PNP_VER_003": {
+      "id": "MSR_TC_PNP_VER_003",
+      "title": "PNP verification Case 3: Migration-only",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "electrochemistry (PNP/Butler–Volmer)",
+      "tools": [
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt (electrolyte)"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "Poisson–Nernst–Planck",
+        "electrochemical transport",
+        "current density"
+      ],
+      "summary": "Electrochemistry verification case comparing against theoretical current densities and/or concentration distributions.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Verification section: four electrochemical verification cases for the PNP framework."
+        }
+      ],
+      "tags": [
+        "electrochemistry",
+        "PNP",
+        "verification"
+      ]
+    },
+    "MSR_TC_PNP_VER_004": {
+      "id": "MSR_TC_PNP_VER_004",
+      "title": "PNP verification Case 4: Potential distribution",
+      "vv_type": "verification",
+      "scope": "component",
+      "system": "electrochemistry (PNP/Butler–Volmer)",
+      "tools": [
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt (electrolyte)"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "Poisson–Nernst–Planck",
+        "electrochemical transport",
+        "current density"
+      ],
+      "summary": "Electrochemistry verification case comparing against theoretical current densities and/or concentration distributions.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Verification section: four electrochemical verification cases for the PNP framework."
+        }
+      ],
+      "tags": [
+        "electrochemistry",
+        "PNP",
+        "verification"
+      ]
+    },
+    "MSR_TC_PNP_VAL_ORNL_LOOP_001": {
+      "id": "MSR_TC_PNP_VAL_ORNL_LOOP_001",
+      "title": "PNP corrosion model validation: ORNL natural convection corrosion loop (Cr/Fe concentrations and penetration depth)",
+      "vv_type": "validation",
+      "scope": "integral",
+      "system": "ORNL natural convection corrosion loop experiment",
+      "tools": [
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "corrosion dissolution",
+        "species transport",
+        "PNP electrochemistry"
+      ],
+      "summary": "Validation of the PNP model against ORNL natural convection corrosion loop experimental data; compares concentration profiles and corrosion penetration depths, and end-of-test salt concentrations.",
+      "metrics": [
+        {
+          "name": "measured_end_concentration_wppm",
+          "value": {
+            "Cr": "255±28",
+            "Fe": "68±8"
+          }
+        },
+        {
+          "name": "predicted_end_concentration_wppm_mass_transport",
+          "value": {
+            "Cr": 235,
+            "Fe": 75
+          }
+        },
+        {
+          "name": "predicted_end_concentration_wppm_PNP",
+          "value": {
+            "Cr": 251,
+            "Fe": 72
+          }
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Validation section: Table 7 and Figure 9 compare predicted vs measured Cr/Fe concentrations and penetration depth."
+        }
+      ],
+      "tags": [
+        "corrosion",
+        "PNP",
+        "validation",
+        "experiment"
+      ]
+    },
+    "MSR_TC_LOOP_DEM_2D_001": {
+      "id": "MSR_TC_LOOP_DEM_2D_001",
+      "title": "Two-dimensional molten salt loop simulation: species transport / corrosion-plating demonstration",
+      "vv_type": "demonstration",
+      "scope": "integral",
+      "system": "2D loop model",
+      "tools": [
+        "Pronghorn",
+        "Thermochimica",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (bubbles)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "two-phase flow",
+        "species transport",
+        "chemistry coupling"
+      ],
+      "summary": "Demonstration of multiphase species transport modeling in a 2D molten salt loop configuration.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Demonstration sections include 2D loop simulation showcasing integrated capabilities."
+        }
+      ],
+      "tags": [
+        "loop",
+        "2D",
+        "demonstration",
+        "species-transport"
+      ]
+    },
+    "MSR_TC_LOOP_DEM_3D_001": {
+      "id": "MSR_TC_LOOP_DEM_3D_001",
+      "title": "Three-dimensional molten salt loop simulation: species transport / corrosion-plating demonstration",
+      "vv_type": "demonstration",
+      "scope": "integral",
+      "system": "3D loop model",
+      "tools": [
+        "Pronghorn",
+        "Thermochimica",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (bubbles)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "three-dimensional flow",
+        "two-phase flow",
+        "species transport",
+        "chemistry coupling"
+      ],
+      "summary": "Demonstration of multiphase species transport modeling in a 3D molten salt loop configuration.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Demonstration sections include 3D loop simulation showcasing integrated capabilities."
+        }
+      ],
+      "tags": [
+        "loop",
+        "3D",
+        "demonstration",
+        "species-transport"
+      ]
+    },
+    "MSR_TC_FULL_MSR_LOOP_DEM_001": {
+      "id": "MSR_TC_FULL_MSR_LOOP_DEM_001",
+      "title": "Full MSR loop simulation: coupled corrosion + noble metal plating demonstration (MSRE and MCRE)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Full MSR loop (MSRE / MCRE)",
+      "tools": [
+        "Pronghorn",
+        "Thermochimica",
+        "MOOSE",
+        "SAM"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (bubbles)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "corrosion",
+        "noble metal plating/plate-out",
+        "two-phase species transfer",
+        "system loop transport"
+      ],
+      "summary": "Demonstration of full-loop coupled modeling including corrosion and noble metal plating for MSR systems (MSRE and MCRE).",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Full MSR loop demonstration includes MSRE and MCRE examples."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "MCRE",
+        "full-loop",
+        "demonstration"
+      ]
+    },
+    "MSR_TC_FLUORINATION_PULSE_DEM_001": {
+      "id": "MSR_TC_FLUORINATION_PULSE_DEM_001",
+      "title": "Fluorination pulse transient: demonstration of off-gas / species removal transient",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSR loop + fluorination/off-gas feature",
+      "tools": [
+        "Thermochimica",
+        "Pronghorn",
+        "MOOSE"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (bubbles)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "transient chemistry",
+        "species volatilization",
+        "off-gas removal"
+      ],
+      "summary": "Demonstration of a fluorination pulse transient to exercise transient chemistry-driven species removal in a loop model.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-81124",
+          "report_link": "sandbox:/mnt/data/M2_FullLoopCorrosion_2024.pdf",
+          "note": "Fluorination pulse transient demonstration section."
+        }
+      ],
+      "tags": [
+        "fluorination",
+        "off-gas",
+        "demonstration"
+      ]
+    },
+    "MCRE_CORROSION_PLATING_DEM_001": {
+      "id": "MCRE_CORROSION_PLATING_DEM_001",
+      "title": "MCRE long-duration corrosion + noble metal plating: PNP-based transient simulation (10 million seconds)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "Molten Chloride Reactor Experiment (MCRE) loop (open-source configuration)",
+      "tools": [
+        "Pronghorn",
+        "MOOSE",
+        "Thermochimica"
+      ],
+      "fluids": [
+        "molten salt"
+      ],
+      "phases": 1,
+      "phenomena": [
+        "corrosion species transport (Cr/Fe/Ni)",
+        "noble metal plate-out (Ru/Rh/Pd/Ag)",
+        "extended-duration transient"
+      ],
+      "summary": "Example case using an open-source MCRE configuration with a PNP framework to model corrosion and noble-metal plating over extended operational periods (10 million seconds ≈ 115.7 days).",
+      "metrics": [
+        {
+          "name": "simulation_time",
+          "value": "10,000,000 s (~115.7 days)"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88131",
+          "report_link": "sandbox:/mnt/data/MSR_TC_M3_2025 (4).pdf",
+          "note": "Example case: open-source MCRE long-duration corrosion and plating transient with PNP framework."
+        }
+      ],
+      "tags": [
+        "MCRE",
+        "corrosion",
+        "plating",
+        "demonstration"
+      ]
+    },
+    "MSRE_SPECIES_TRACKING_SS_DEM_001": {
+      "id": "MSRE_SPECIES_TRACKING_SS_DEM_001",
+      "title": "MSRE steady-state species tracking: 91-isotope depletion chain at 10 MWd/kgHM burnup",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSRE",
+      "tools": [
+        "MOOSE-based framework (species tracking)",
+        "NEAMS tools"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "multiphase species tracking",
+        "depletion chain coupling"
+      ],
+      "summary": "Steady-state MSRE simulation using a 91-isotope depletion chain at burnup 10 MWd/kgHM, producing isotopic mass and concentration distributions.",
+      "metrics": [],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-80404",
+          "report_link": "sandbox:/mnt/data/80404 ART_MSR_M3_MT_final MSR_MT.pdf",
+          "note": "Section 4.3.1: Steady-state operation with 91 depletion chain at 10 MWd/kgHM."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "species-tracking",
+        "steady-state",
+        "demonstration"
+      ]
+    },
+    "MSRE_SPECIES_TRACKING_RI_DEM_002": {
+      "id": "MSRE_SPECIES_TRACKING_RI_DEM_002",
+      "title": "MSRE reactivity insertion transient: 300 pcm at t=0.1 s (species tracking framework)",
+      "vv_type": "demonstration",
+      "scope": "system",
+      "system": "MSRE",
+      "tools": [
+        "MOOSE-based framework (species tracking)",
+        "NEAMS tools"
+      ],
+      "fluids": [
+        "molten salt",
+        "gas (void)"
+      ],
+      "phases": 2,
+      "phenomena": [
+        "reactivity insertion transient",
+        "multiphase species tracking"
+      ],
+      "summary": "Transient MSRE case with a 300 pcm reactivity insertion at t=0.1 s and total simulation time of 1 s.",
+      "metrics": [
+        {
+          "name": "reactivity_insertion",
+          "value": "300 pcm at t=0.1 s"
+        },
+        {
+          "name": "simulation_time",
+          "value": "1 s"
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-24-80404",
+          "report_link": "sandbox:/mnt/data/80404 ART_MSR_M3_MT_final MSR_MT.pdf",
+          "note": "Section 4.3.2: Reactivity insertion transient (300 pcm at t=0.1 s, 1 s total)."
+        }
+      ],
+      "tags": [
+        "MSRE",
+        "species-tracking",
+        "transient",
+        "demonstration"
+      ]
+    },
+    "MSTDB_TP_ML_VAL_001": {
+      "id": "MSTDB_TP_ML_VAL_001",
+      "title": "MSTDB-TP thermal property prediction: 1D CNN model cross-validation and test-set assessment",
+      "vv_type": "validation",
+      "scope": "component",
+      "system": "ML surrogate for salt thermophysical properties",
+      "tools": [
+        "ML (1D CNN)"
+      ],
+      "fluids": [],
+      "phases": null,
+      "phenomena": [
+        "thermophysical property prediction",
+        "cross-validation",
+        "generalization testing"
+      ],
+      "summary": "Validation-style evaluation of ML models trained to predict thermal properties (boiling point, melting point, density, viscosity, thermal conductivity, heat capacity) from MSTDB-TP; assessed with 10-fold CV and held-out test set.",
+      "metrics": [
+        {
+          "name": "cross_validation_summary",
+          "value": "Avg R2 > 0.90 for most properties; MAPE < 10% except boiling point (per report tables)."
+        }
+      ],
+      "acceptance_criteria": null,
+      "references": [],
+      "artifacts": {
+        "inputs": [],
+        "outputs": [],
+        "plots": []
+      },
+      "status": {
+        "maturity": "reported",
+        "review": "unconfirmed"
+      },
+      "source_reports": [
+        {
+          "report_id": "INL-RPT-25-88048",
+          "report_link": "sandbox:/mnt/data/M2_report_all_labs_final.pdf",
+          "note": "Section 3.4: ML model assessment for predicting thermal properties from MSTDB-TP; 10-fold cross-validation summary."
+        }
+      ],
+      "tags": [
+        "ML",
+        "MSTDB-TP",
+        "validation"
+      ]
+    }
+  }
+}
