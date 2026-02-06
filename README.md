@@ -1,4 +1,4 @@
-# NEAMS Validation Database – Streamlit Demo App
+# NEAMS-MSRs Validation Database – Streamlit Demo App
 
 This repo hosts a Streamlit web application that:
 1) Provides an **LLM-powered search** over a JSON validation database with **report traceability**.
@@ -48,7 +48,7 @@ The app will automatically look up report PDFs by `file_name`.
 
 ## Notes for Streamlit Cloud hosting
 
-Edits to the database file may not persist across sessions in Streamlit Cloud.  
+Edits to the database file may not persist across sessions in Streamlit Cloud.
 The app therefore always offers a **Download updated database JSON** button so you can commit changes back to GitHub.
 
 ---

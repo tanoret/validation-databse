@@ -28,11 +28,11 @@ from src.search import (
     search_cases_with_query_embedding,
 )
 from src.agent import run_agent
-from src.reporting import generate_cgd_markdown, render_cgd_pdf, DEFAULT_CRITICAL_CHARACTERISTICS
+from src.reporting import generate_cgd_markdown, render_cgd_pdf, render_cgd_docx, DEFAULT_CRITICAL_CHARACTERISTICS
 from src.ui_helpers import display_report_excerpt
 
 
-APP_TITLE = "NEAMS Validation Database – Demo"
+APP_TITLE = "NEAMS-MSRs Validation Database – Demo"
 REPORTS_DIR_DEFAULT = Path("pdf")
 REPORTS_DIR_FALLBACK = Path("data/reports")
 
@@ -47,7 +47,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.title("🧪 NEAMS Validation Database – Demo App")
+st.title("🧪 NEAMS-MSRs Validation Database – Demo App")
 st.caption("LLM-powered case discovery + CGD-ready evidence package drafts + workbook editing.")
 
 with st.expander("What this app does", expanded=False):

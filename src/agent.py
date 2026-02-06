@@ -28,7 +28,7 @@ def _extract_first_json(text: str) -> Optional[Dict[str, Any]]:
         return None
 
 
-SYSTEM_PROMPT = """You are an expert assistant for the NEAMS Validation Database.
+SYSTEM_PROMPT = """You are an expert assistant for the NEAMS-MSRs Validation Database.
 
 Your job:
 - Help the user find, filter, and understand validation/verification/benchmark/demonstration cases.

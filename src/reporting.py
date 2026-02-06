@@ -20,6 +20,11 @@ from reportlab.platypus import (
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 
+from docx import Document
+from docx.shared import Inches, Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml.shared import OxmlElement, qn
+
 
 DEFAULT_CRITICAL_CHARACTERISTICS = [
     {
@@ -84,6 +89,64 @@ def _mk_case_row(case: Dict[str, Any], reports: Dict[str, Any]) -> Dict[str, Any
     }
 
 
+
+def _p(styles, text: str, style_name: str = "Normal") -> Paragraph:
+    """Safe paragraph for table cells (wraps long text)."""
+    s = (text or "").replace("\n", " ").strip()
+    return Paragraph(s, styles[style_name])
+
+
+def _make_case_catalog_table(selected_cases: List[Dict[str, Any]], reports: Dict[str, Any], styles, doc_width: float) -> Table:
+    """Create a compact, wrapped table that fits the page."""
+    header = ["Case ID", "Title", "V&V type", "Scope", "Tools", "Source reports"]
+    data = [[_p(styles, h, "BodyText") for h in header]]
+
+    for c in selected_cases:
+        row = _mk_case_row(c, reports)
+        data.append([
+            _p(styles, str(row["id"])),
+            _p(styles, str(row["title"])),
+            _p(styles, str(row["vv_type"])),
+            _p(styles, str(row["scope"])),
+            _p(styles, str(row["tools"])),
+            _p(styles, str(row["reports"])),
+        ])
+
+    # Column widths as fractions of available doc width
+    fracs = [0.14, 0.28, 0.10, 0.10, 0.14, 0.24]  # sum = 1.0
+    col_widths = [doc_width * f for f in fracs]
+
+    tbl = Table(data, colWidths=col_widths, repeatRows=1, splitByRow=1)
+    tbl.setStyle(TableStyle([
+        ("BACKGROUND", (0,0), (-1,0), colors.HexColor("#EDEDED")),
+        ("GRID", (0,0), (-1,-1), 0.25, colors.grey),
+        ("FONTNAME", (0,0), (-1,0), "Helvetica-Bold"),
+        ("FONTSIZE", (0,0), (-1,-1), 8),
+        ("LEADING", (0,0), (-1,-1), 9),
+        ("VALIGN", (0,0), (-1,-1), "TOP"),
+        ("LEFTPADDING", (0,0), (-1,-1), 4),
+        ("RIGHTPADDING", (0,0), (-1,-1), 4),
+        ("TOPPADDING", (0,0), (-1,-1), 3),
+        ("BOTTOMPADDING", (0,0), (-1,-1), 3),
+    ]))
+    return tbl
+
+
+def _set_docx_table_borders(table):
+    """Add simple borders to a python-docx table."""
+    tbl = table._tbl
+    tblPr = tbl.tblPr
+    tblBorders = OxmlElement('w:tblBorders')
+    for edge in ('top', 'left', 'bottom', 'right', 'insideH', 'insideV'):
+        element = OxmlElement(f'w:{edge}')
+        element.set(qn('w:val'), 'single')
+        element.set(qn('w:sz'), '4')
+        element.set(qn('w:space'), '0')
+        element.set(qn('w:color'), 'A0A0A0')
+        tblBorders.append(element)
+    tblPr.append(tblBorders)
+
+
 def generate_cgd_markdown(
     db: Dict[str, Any],
     selected_case_ids: List[str],
@@ -118,7 +181,7 @@ def generate_cgd_markdown(
 
     md.append("## 1. Purpose and scope\n")
     md.append(f"This document is a **draft CGD-ready evidence package** for **{_md_escape(tool_name)}** (version **{_md_escape(tool_version)}**).  ")
-    md.append("It consolidates verification/validation/benchmark/demonstration evidence from the NEAMS validation database and provides traceability to the originating milestone reports.\n")
+    md.append("It consolidates verification/validation/benchmark/demonstration evidence from the NEAMS-MSRs Validation Database and provides traceability to the originating milestone reports.\n")
     md.append(f"**Intended use:** {_md_escape(intended_use)}\n")
 
     md.append("## 2. Software identification and configuration\n")
@@ -213,6 +276,11 @@ def render_cgd_pdf(
     environment = user_inputs.get("execution_environment") or "TBD"
 
     styles = getSampleStyleSheet()
+    # Tighten body text for denser tables
+    styles['BodyText'].fontSize = 8
+    styles['BodyText'].leading = 9
+    styles['Normal'].fontSize = 10
+    styles['Normal'].leading = 12
     story = []
 
     story.append(Paragraph(title, styles["Title"]))
@@ -228,19 +296,17 @@ def render_cgd_pdf(
     story.append(Paragraph(f"Intended use: {intended_use}", styles["Normal"]))
     story.append(Spacer(1, 0.2 * inch))
 
-    story.append(Paragraph("Selected case catalog", styles["Heading2"]))
-    data = [["Case ID", "Title", "V&V type", "Scope", "Tools", "Source reports"]]
-    for c in selected_cases:
-        row = _mk_case_row(c, reports)
-        data.append([row["id"], row["title"], row["vv_type"], row["scope"], row["tools"], row["reports"]])
 
-    tbl = Table(data, colWidths=[1.0*inch, 2.6*inch, 0.8*inch, 0.8*inch, 1.2*inch, 2.6*inch])
-    tbl.setStyle(TableStyle([
-        ("BACKGROUND", (0,0), (-1,0), colors.lightgrey),
-        ("GRID", (0,0), (-1,-1), 0.25, colors.grey),
-        ("FONTNAME", (0,0), (-1,0), "Helvetica-Bold"),
-        ("VALIGN", (0,0), (-1,-1), "TOP"),
-    ]))
+    story.append(Paragraph("Selected case catalog", styles["Heading2"]))
+
+    # Use wrapped table sized to doc width to avoid overflow
+    # Note: doc.width is available after creating doc; compute with LETTER minus margins used below.
+    page_w, page_h = pagesizes.LETTER
+    left_margin = 0.7 * inch
+    right_margin = 0.7 * inch
+    doc_width = page_w - left_margin - right_margin
+
+    tbl = _make_case_catalog_table(selected_cases, reports, styles, doc_width)
     story.append(tbl)
     story.append(PageBreak())
 
@@ -269,6 +335,109 @@ def render_cgd_pdf(
             story.append(Paragraph(f"- {num}: {rep_title} — {note}", styles["Normal"]))
         story.append(Spacer(1, 0.15 * inch))
 
-    doc = SimpleDocTemplate(str(out_path), pagesize=pagesizes.LETTER, topMargin=0.8*inch, bottomMargin=0.8*inch)
+    doc = SimpleDocTemplate(str(out_path), pagesize=pagesizes.LETTER, leftMargin=0.7*inch, rightMargin=0.7*inch, topMargin=0.75*inch, bottomMargin=0.75*inch)
     doc.build(story)
+    return out_path
+
+
+def render_cgd_docx(
+    db: Dict[str, Any],
+    selected_case_ids: List[str],
+    user_inputs: Dict[str, Any],
+    out_path: Path,
+) -> Path:
+    """Create a CGD package as a DOCX (Word) document."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    cases = db.get("cases", {})
+    reports = db.get("reports", {})
+
+    selected_cases: List[Dict[str, Any]] = []
+    for cid in selected_case_ids:
+        c = cases.get(cid)
+        if c:
+            cc = dict(c)
+            cc.setdefault("id", cid)
+            selected_cases.append(cc)
+
+    title = user_inputs.get("package_title") or "Commercial Grade Dedication Evidence Package (Draft)"
+    tool_name = user_inputs.get("tool_name") or "NEAMS Tool(s)"
+    tool_version = user_inputs.get("tool_version") or "TBD"
+    intended_use = user_inputs.get("intended_use") or "TBD"
+    environment = user_inputs.get("execution_environment") or "TBD"
+    requester = user_inputs.get("requester") or "TBD"
+    reviewer = user_inputs.get("reviewer") or "TBD"
+
+    doc = Document()
+
+    # Title
+    p = doc.add_paragraph()
+    run = p.add_run(title)
+    run.bold = True
+    run.font.size = Pt(18)
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+    meta = doc.add_paragraph()
+    meta_run = meta.add_run(f"Generated: {_now_iso()}\nPrepared for: {requester}\nReviewer/Approver: {reviewer}")
+    meta_run.font.size = Pt(10)
+
+    doc.add_paragraph()
+
+    doc.add_heading("1. Purpose and scope", level=2)
+    doc.add_paragraph(
+        f"This document is a draft CGD-ready evidence package for {tool_name} (version/commit: {tool_version}). "
+        "It consolidates V&V/benchmark/demonstration evidence and preserves traceability to source reports."
+    )
+    doc.add_paragraph(f"Intended use: {intended_use}")
+
+    doc.add_heading("2. Software identification and configuration", level=2)
+    doc.add_paragraph(f"Tool(s): {tool_name}")
+    doc.add_paragraph(f"Version/Commit: {tool_version}")
+    doc.add_paragraph(f"Execution environment: {environment}")
+
+    doc.add_heading("3. Selected case catalog", level=2)
+    table = doc.add_table(rows=1, cols=6)
+    hdr = table.rows[0].cells
+    headers = ["Case ID", "Title", "V&V type", "Scope", "Tools", "Source reports"]
+    for i, h in enumerate(headers):
+        hdr[i].text = h
+
+    for c in selected_cases:
+        row = _mk_case_row(c, reports)
+        cells = table.add_row().cells
+        cells[0].text = str(row["id"] or "")
+        cells[1].text = str(row["title"] or "")
+        cells[2].text = str(row["vv_type"] or "")
+        cells[3].text = str(row["scope"] or "")
+        cells[4].text = str(row["tools"] or "")
+        cells[5].text = str(row["reports"] or "")
+
+    _set_docx_table_borders(table)
+
+    doc.add_page_break()
+    doc.add_heading("4. Case details", level=2)
+
+    for c in selected_cases:
+        doc.add_heading(f"{c.get('id')}: {c.get('title')}", level=3)
+        doc.add_paragraph(f"V&V type: {c.get('vv_type')} | Scope: {c.get('scope')} | System: {c.get('system')}")
+        doc.add_paragraph(f"Tools: {', '.join(c.get('tools', []) or [])}")
+        doc.add_paragraph(f"Phenomena: {', '.join(c.get('phenomena', []) or [])}")
+        if c.get("summary"):
+            doc.add_paragraph(f"Summary: {c.get('summary')}")
+
+        metrics = c.get("metrics", []) or []
+        if metrics:
+            doc.add_paragraph("Metrics:")
+            for m in metrics:
+                doc.add_paragraph(f"- {m.get('name')}: {m.get('value')} ({m.get('basis','')})", style=None)
+
+        doc.add_paragraph("Source report traceability:")
+        for sr in c.get("source_reports", []) or []:
+            rid = sr.get("report_id")
+            rep = reports.get(rid, {}) if rid else {}
+            num = rep.get("report_number") or rid or "Unknown report"
+            rep_title = rep.get("title") or ""
+            note = sr.get("note") or ""
+            doc.add_paragraph(f"- {num}: {rep_title} — {note}")
+
+    doc.save(str(out_path))
     return out_path

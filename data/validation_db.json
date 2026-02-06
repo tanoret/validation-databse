@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "generated_on": "2026-02-05",
-  "database_name": "NEAMS Validation Database (Demo)",
+  "database_name": "NEAMS-MSRs Validation Database (Demo)",
   "description": "Demonstration JSON database aggregating verification/validation/benchmark/demonstration cases extracted from the attached NEAMS MSR milestone reports. Designed to support future commercial grade dedication workflows via traceability to source evidence.",
   "requirements": [
     {
